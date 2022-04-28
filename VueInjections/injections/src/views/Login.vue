@@ -6,7 +6,7 @@
               <label for="validationDefaultUsername" class="form-label">Username</label>
               <div class="input-group">
                   <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                  <input id="user" type="text" class="form-control"  aria-describedby="inputGroupPrepend2" required>
+                  <input id="email" type="text" class="form-control"  aria-describedby="inputGroupPrepend2" required>
               </div>
               </div>
               <div class="col-md-12">
@@ -43,29 +43,29 @@ export default {
     //        movie : Movie,
     //        genres : []
     //     }
-    // return{
-    //   axios
-    // }
   },
   components: {
     // HelloWorld,
   },
   mounted(){
-    this.getUsers();
+    // this.getUsers();
   },
   methods:{
     my(){
-      var user = document.getElementById("user").value;
-      var password =document.getElementById("password").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
       
-      document.getElementById("exampleFormControlTextarea2").value = `SELECT * FROM bd.usuario WHERE id = (${user})`;; 
+      document.getElementById("exampleFormControlTextarea2").value = `SELECT * FROM bd.usuario WHERE id = (${email})`;; 
       document.getElementById("exampleFormControlTextarea3").value = password; 
+
+      this.getUsers(email,password);
     },
-    getUsers(){
-      ApiService.getUsers("email@email.com").then(({ data }) => {
+    getUsers(email, password){
+      console.log(password);
+      ApiService.getUsers(email).then(({ data }) => {
         for (let i = 0; i < data.length; i++) {
           console.log(data);
-          // this.MoviesV[i] = new Movie(data.results[i]);
+          document.getElementById("exampleFormControlTextarea3").value = data[0].email; 
         }
         // this.page = this.page + 1;
         this.isMounted = true;

@@ -27,15 +27,15 @@ app.get('/getusers/:email',(req, res) => {
     
     let sql = `SELECT * FROM db.user WHERE email="${req.params.email}"`;
 
-    // console.log(req.);
     console.log("======")
-    console.log(req.params.email);
+    console.log(sql);
     console.log("======")
-    // `popular?${this.apiKey}&page=${currentPage}`
+    // console.log(req.params.email);
+    
     let query = db.query(sql, (err, results) => {
         if (err) throw err;
         console.log(results);
-        res.send('post fetched...');
+        res.send(results);
     });
 })
 
