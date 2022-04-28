@@ -8,13 +8,11 @@ class ApiService {
     
   }
   // Retorna los users
-  getUsers(email) {
-    console.log(email); 
-    return this.resource.get(`getusers/${email}`);
+  getUsers(email, password) {
+    // console.log(password); 
+    return this.resource.get(`getusers/${email}/${password}`);
   }
-//   getPopular(currentPage) {
-//     return this.resource.get(`user?${this.apiKey}&page=${currentPage}`);
-//   }
+
   
 }
 export default new ApiService();
